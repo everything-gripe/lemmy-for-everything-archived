@@ -1,0 +1,17 @@
+{
+  "name": "lemmy-for-everything",
+  "version": "0.0.1",
+  "description": "Connect with Lemmy instances seamlessly through the Everything middleware. Simplify integration and streamline API access with Lemmy for Everything.",
+  "scripts": {
+    "start:dev": "vercel dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "everything-sdk": "^0.5.3",
+    "lemmy-js-client": "^0.18.1-rc.2",
+    "node-fetch": "^2.6.11"
+  }
+}

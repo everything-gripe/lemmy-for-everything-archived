@@ -3,18 +3,20 @@ import {LemmyHttp} from "lemmy-js-client";
 
 export default async function (request, response) {
     const page = Number(request.query.after ?? 1)
-    const client = new LemmyHttp('https://lemmy.ml')
+    const limit = Number(request.query.limit ?? 25)
+    const subreddit = request.query.subreddit
+    const [, instance] = subreddit.split('@')
+    const client = new LemmyHttp(`https://${instance || 'lemmy.ml'}`)
 
     const postsResponse = await client.getPosts({
-        community_name: request.query.subreddit,
-        limit: request.query.limit,
+        community_name: subreddit,
+        limit,
         page
     })
 
     const posts = await Promise.all(postsResponse.posts.map(async lemmyPost => {
         const id = lemmyPost.post.id
         const title = lemmyPost.post.name;
-        const subreddit = lemmyPost.community.name || request.query.subreddit
         const subredditNamePrefixed = `r/${subreddit}`
         const numComments = lemmyPost.counts.comments
         const permalink = `/r/${subreddit}/comments/${id}`
@@ -24,7 +26,6 @@ export default async function (request, response) {
         const downs = lemmyPost.counts.downvotes
         const score = lemmyPost.counts.score
         const createdUtc = Math.floor(new Date(lemmyPost.post.published).getTime() / 1000)
-        console.log(createdUtc)
 
         if (lemmyPost.post.body) {
             var isSelf = true

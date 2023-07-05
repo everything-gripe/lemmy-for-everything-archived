@@ -1,9 +1,5 @@
-﻿import {Everything} from "everything-sdk";
+﻿import {getGroup} from "../../lemmy";
 
 export default async function (request, response) {
-    response.send(Everything.group({
-        name: `t5_${request.query.subreddit}`,
-        display_name: `${request.query.subreddit}`,
-        display_name_prefixed: `r/${request.query.subreddit}`
-    }))
+    response.send(await getGroup({subreddit: request.query.subreddit}))
 }

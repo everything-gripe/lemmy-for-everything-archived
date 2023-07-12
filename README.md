@@ -1,3 +1,7 @@
+# Deprecation Notice
+
+This repository has been archived in favor of the new [Lemmy for Everything repository](https://github.com/everything-gripe/lemmy-for-everything) which makes use of the more dynamic [everything-vercel](https://github.com/everything-gripe/everything-vercel) layer.
+
 # Lemmy for Everything
 
 [![License](https://img.shields.io/badge/license-ISC-blue.svg)](LICENSE.md)
@@ -14,7 +18,7 @@ Lemmy for Everything is an implementation of the Everything API guidelines for L
 
 To get started with Lemmy for Everything, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/everything-gripe/lemmy-for-everything.git`
+1. Clone the repository: `git clone https://github.com/everything-gripe/lemmy-for-everything-archived.git`
 2. Install the required dependencies: `npm install`
 3. Start the development server: `npm run start:dev`
 4. Access Lemmy through the Everything middleware by constructing the request URL in the format: `https://everything.gripe/user/localhost:3000:<username>`

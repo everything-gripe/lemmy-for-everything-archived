@@ -210,16 +210,16 @@ export async function getUserDetails({limit, page, sort, secondarySort, userDeta
             const details = await Promise.all([...posts.map(buildPost), ...comments.map(buildComment)])
             switch (primarySort || 'New') {
                 case 'New':
-                    details.sort((left, right) => left.data.created_utc - right.data.created_utc)
-                    break
-                case 'Old':
                     details.sort((left, right) => right.data.created_utc - left.data.created_utc)
                     break
+                case 'Old':
+                    details.sort((left, right) => left.data.created_utc - right.data.created_utc)
+                    break
                 case 'Top':
-                    details.sort((left, right) => left.data.score - right.data.score)
+                    details.sort((left, right) => right.data.score - left.data.score)
                     break
                 case 'Hot':
-                    details.sort((left, right) => left.data.hot_rank - right.data.hot_rank)
+                    details.sort((left, right) => right.data.hot_rank - left.data.hot_rank)
                     break
             }
 
@@ -325,7 +325,7 @@ function buildUser(personView) {
         subreddit: {
             name: `${Kind.Group}_${personView.person.id}`,
             display_name: `u_${displayName}`,
-            display_name_prefixed: `r/${displayName}`,
+            display_name_prefixed: `u/${displayName}`,
             description: personView.person.bio,
             public_description: personView.person.bio,
             subreddit_type: 'user',
